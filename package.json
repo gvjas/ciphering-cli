@@ -1,0 +1,12 @@
+{
+  "name": "caesar",
+  "version": "1.0.0",
+  "description": "task",
+  "main": "caesar-cpi.js",
+  "type": "module",
+  "scripts": {
+    "c": "node caesar-cpi.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
