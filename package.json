@@ -5,7 +5,7 @@
   "main": "caesar-cpi.js",
   "type": "module",
   "scripts": {
-    "c": "node caesar-cpi.js"
+    "c": "node my_ciphering_cli"
   },
   "author": "",
   "license": "ISC"

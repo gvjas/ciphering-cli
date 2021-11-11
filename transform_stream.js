@@ -1,21 +1,13 @@
 import fs from 'fs';
 import { pipeline, Transform } from 'stream';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 import { cipherC, cipherA} from './cipher_string.js';
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-console.log(111111111111, __dirname)
+function transformStream(chipherConfig, fileIn, fileOut) {
 
-
-function transform_stream(chipherConfig, fileIn = 0, fileOut = 0) {
-
-
-  const rstream = fileIn ? fs.createReadStream("input.txt", {flags: 'a+'}) : process.stdin;
-  const wstream = fileOut ? fs.createWriteStream("output.txt", {flags: 'a+'}) : process.stdout;
+  const rstream = fileIn ? fs.createReadStream(fileIn, {flags: 'a+'}) : process.stdin;
+  const wstream = fileOut ? fs.createWriteStream(fileOut, {flags: 'a+'}) : process.stdout;
 
   const TransformStreamC = (flag) => new Transform({
     
@@ -52,7 +44,6 @@ function transform_stream(chipherConfig, fileIn = 0, fileOut = 0) {
   pipeline(
         rstream,
         ...streams,
-        // wstream,
         wstream,
         (error) => {
             if (error) { console.log(error) }
@@ -62,4 +53,4 @@ function transform_stream(chipherConfig, fileIn = 0, fileOut = 0) {
 
 }
 
-export default transform_stream
+export default transformStream
