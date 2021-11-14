@@ -7,7 +7,7 @@ import { TransformStreamC, TransformStreamROT, TransformStreamA } from './Transf
 
 
 function transformStream(chipherConfig, fileIn, fileOut) {
-    fs.createWriteStream
+
     const rstream = fileIn ? new ReadStream(fileIn) : process.stdin;
     const wstream = fileOut ? new WriteStream(fileOut) : process.stdout;
 
