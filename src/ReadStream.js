@@ -1,4 +1,4 @@
-import { Readable }from 'stream';
+import { Readable } from 'stream';
 import fs from 'fs';
 
 export class ReadStream extends Readable {
@@ -7,7 +7,7 @@ export class ReadStream extends Readable {
         super();
         this.filename = filename;
         this.fd = null;
-        this.sizeChunk = 64;
+        
     }
     _construct(callback) {
       fs.open(this.filename, (err, fd) => {
@@ -17,11 +17,11 @@ export class ReadStream extends Readable {
                 this.fd = fd;
                 callback();
             }
-      });
+        });
     }
-    _read() {
-        const buf = Buffer.alloc(this.sizeChunk);
-        fs.read(this.fd, buf, 0, this.sizeChunk, null, (err, bytesRead) => {
+    _read(n) {
+        const buf = Buffer.alloc(n);
+        fs.read(this.fd, buf, 0, n, null, (err, bytesRead) => {
             if (err) {
                 this.destroy(err);
             } else {
