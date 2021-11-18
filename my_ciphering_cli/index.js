@@ -1,6 +1,6 @@
 import validArgs from '../src/valid_args.js'
 import transformStream from '../src/transform_stream.js';
-import { errorHandler } from '../src/errorHandler.js';
+import { errorHandler } from '../src/error_handler.js';
 
 const flag = process.argv.slice(2);
 let args;

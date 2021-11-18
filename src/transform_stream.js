@@ -1,9 +1,9 @@
 import fs from 'fs';
 import { pipeline } from 'stream';
 
-import { ReadStream } from './ReadStream.js';
-import { WriteStream } from './WriteStream.js';
-import { TransformStreamC, TransformStreamROT, TransformStreamA } from './TransformStreamCRA.js'
+import { ReadStream } from './Read_Stream.js';
+import { WriteStream } from './Write_Stream.js';
+import { TransformStreamC, TransformStreamROT, TransformStreamA } from './Transform_Stream_CRA.js'
 
 
 function transformStream(chipherConfig, fileIn, fileOut) {

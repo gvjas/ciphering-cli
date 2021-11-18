@@ -2,6 +2,7 @@
     "name": "ciphering-cli",
     "version": "1.0.0",
     "description": "task",
+    "main": "my_ciphering_cli/index.js",
     "type": "module",
     "scripts": {
       "c": "node my_ciphering_cli"
