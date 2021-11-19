@@ -3,10 +3,13 @@
     "version": "1.0.0",
     "description": "task",
     "main": "my_ciphering_cli/index.js",
-    "type": "module",
     "scripts": {
-      "c": "node my_ciphering_cli"
+        "test": "jest",
+        "test-coverage": "jest --coverage"
     },
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "jest": "^27.3.1"
+    }
 }

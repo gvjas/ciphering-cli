@@ -1,8 +1,12 @@
-import { Transform } from 'stream';
+// import { Transform } from 'stream';
 
-import { cipherC, cipherA } from './cipher_string.js';
+// import { cipherC, cipherA } from './cipher_string.js';
 
-export class TransformStreamC extends Transform {
+const { Transform } = require('stream');
+
+const { cipherC, cipherA } = require('./cipher_string.js');
+
+class TransformStreamC extends Transform {
     constructor(decodeFlag) {
         super();
         this.decodeFlag = decodeFlag;
@@ -13,7 +17,7 @@ export class TransformStreamC extends Transform {
     }
 }
 
-export class TransformStreamROT extends Transform {
+class TransformStreamROT extends Transform {
     constructor(decodeFlag) {
         super();
         this.decodeFlag = decodeFlag;
@@ -24,9 +28,12 @@ export class TransformStreamROT extends Transform {
     }
 }
 
-export class TransformStreamA extends Transform {
+class TransformStreamA extends Transform {
 
     _transform(chunk, encoding, callback) {
         callback(null, cipherA(chunk.toString()));
     }
 }
+
+// export { TransformStreamC, TransformStreamA, TransformStreamROT }
+module.exports = { TransformStreamC, TransformStreamA, TransformStreamROT }

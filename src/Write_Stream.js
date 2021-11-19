@@ -1,7 +1,10 @@
-import { Writable } from 'stream';
-import fs from 'fs';
+// import { Writable } from 'stream';
+// import fs from 'fs';
 
-export class WriteStream extends Writable {
+const { Writable } = require('stream');
+const fs = require('fs');
+
+class WriteStream extends Writable {
     constructor(filename) {
         super();
         this.filename = filename;
@@ -29,3 +32,6 @@ export class WriteStream extends Writable {
         }
     }
 }
+
+// export WriteStream
+module.exports = { WriteStream };

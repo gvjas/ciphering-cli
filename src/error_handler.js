@@ -1,4 +1,4 @@
-export const errorHandler = (err) => {
+const errorHandler = (err) => {
 const { isCustom } = err;
 
     if (isCustom) {
@@ -8,3 +8,7 @@ const { isCustom } = err;
         throw err;
     }
 }
+
+
+// export errorHandler
+module.exports = { errorHandler }

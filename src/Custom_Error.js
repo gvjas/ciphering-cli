@@ -1,4 +1,4 @@
-export class ConfigError extends Error {
+class ConfigError extends Error {
     constructor(message) {
         super(message);
         this.name = 'ConfigError';
@@ -6,7 +6,7 @@ export class ConfigError extends Error {
     }
 }
 
-export class FlagError extends Error {
+class FlagError extends Error {
     constructor(message) {
         super(message);
         this.name = 'FlagError';
@@ -14,10 +14,13 @@ export class FlagError extends Error {
     }
 }
 
-export class PathError extends Error {
+class PathError extends Error {
     constructor(message) {
         super(message);
         this.name = 'PathError';
         this.isCustom = true;
     }
 }
+
+// export { ConfigError, FlagError, PathError }
+module.exports = { ConfigError, FlagError, PathError }

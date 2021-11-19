@@ -9,7 +9,7 @@ const replaceShift = (ch, alph, shift) => {
     return alph.slice(ind)[0]
 }
 
-export function cipherC(str, shift) {
+function cipherC(str, shift) {
     let str1 = ''
     for (const ch of str) {
         if ((/[a-z]/).test(ch)) {
@@ -23,7 +23,7 @@ export function cipherC(str, shift) {
     return str1
 }
 
-export function cipherA(str) {
+function cipherA(str) {
     let str1 = ''
     for (const ch of str) {
         if ((/[a-z]/).test(ch)) {
@@ -38,3 +38,6 @@ export function cipherA(str) {
     
     return str1
 }
+
+// export {cipherA, cipherC}
+module.exports = {cipherA, cipherC}
