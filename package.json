@@ -1,0 +1,11 @@
+{
+    "name": "ciphering-cli",
+    "version": "1.0.0",
+    "description": "task",
+    "type": "module",
+    "scripts": {
+      "c": "node my_ciphering_cli"
+    },
+    "author": "",
+    "license": "ISC"
+}
