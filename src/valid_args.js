@@ -1,9 +1,3 @@
-// import fs from 'fs'
-// import path from 'path';
-// import { fileURLToPath } from 'url';
-
-// import { ConfigError, FlagError, PathError } from './Custom_Error.js'
-
 const fs = require('fs');
 const path = require('path');
 const { fileURLToPath } = require('url');
@@ -69,5 +63,4 @@ function validArgs(flag) {
 }
 
 
-// export default validArgs;
 module.exports = { validArgs };

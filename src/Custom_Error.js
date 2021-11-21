@@ -22,5 +22,4 @@ class PathError extends Error {
     }
 }
 
-// export { ConfigError, FlagError, PathError }
 module.exports = { ConfigError, FlagError, PathError }

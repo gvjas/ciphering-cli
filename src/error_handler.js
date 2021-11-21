@@ -10,5 +10,4 @@ const { isCustom } = err;
 }
 
 
-// export errorHandler
 module.exports = { errorHandler }

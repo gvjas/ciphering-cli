@@ -1,12 +1,6 @@
-// import fs from 'fs';
-// import { pipeline } from 'stream';
-
-// import { ReadStream } from './Read_Stream.js';
-// import { WriteStream } from './Write_Stream.js';
-// import { TransformStreamC, TransformStreamROT, TransformStreamA } from './Transform_Stream_CRA.js'
-
 const fs = require('fs');
 const { pipeline } = require('stream');
+const path = require('path')
 
 const { ReadStream } = require('./Read_Stream.js');
 const { WriteStream } = require('./Write_Stream.js');
@@ -38,9 +32,6 @@ function transformStream(cipherConfig, fileIn, fileOut) {
             else { console.log('finished')}
         }
     )
-
-    
 }
 
-// export default transformStream;
-module.exports = transformStream;
+module.exports ={ transformStream };

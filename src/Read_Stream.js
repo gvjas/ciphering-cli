@@ -1,6 +1,3 @@
-// import { Readable } from 'stream';
-// import fs from 'fs';
-
 const { Readable } = require('stream');
 const fs = require('fs');
 
@@ -42,5 +39,4 @@ class ReadStream extends Readable {
     }
 }
 
-// export ReadStream
 module.exports = { ReadStream }

@@ -39,5 +39,4 @@ function cipherA(str) {
     return str1
 }
 
-// export {cipherA, cipherC}
 module.exports = {cipherA, cipherC}

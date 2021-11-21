@@ -1,7 +1,3 @@
-// import { Transform } from 'stream';
-
-// import { cipherC, cipherA } from './cipher_string.js';
-
 const { Transform } = require('stream');
 
 const { cipherC, cipherA } = require('./cipher_string.js');
@@ -35,5 +31,4 @@ class TransformStreamA extends Transform {
     }
 }
 
-// export { TransformStreamC, TransformStreamA, TransformStreamROT }
 module.exports = { TransformStreamC, TransformStreamA, TransformStreamROT }

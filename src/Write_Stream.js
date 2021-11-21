@@ -1,6 +1,3 @@
-// import { Writable } from 'stream';
-// import fs from 'fs';
-
 const { Writable } = require('stream');
 const fs = require('fs');
 
@@ -33,5 +30,4 @@ class WriteStream extends Writable {
     }
 }
 
-// export WriteStream
 module.exports = { WriteStream };
