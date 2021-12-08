@@ -1,7 +1,7 @@
-import { Readable } from 'stream';
-import fs from 'fs';
+const { Readable } = require('stream');
+const fs = require('fs');
 
-export class ReadStream extends Readable {
+class ReadStream extends Readable {
     
     constructor(filename) {
         super();
@@ -38,3 +38,5 @@ export class ReadStream extends Readable {
         }
     }
 }
+
+module.exports = { ReadStream }

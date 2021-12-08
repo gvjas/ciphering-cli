@@ -1,3 +1,10 @@
+use CLI 'npm install'
+
+use teting: 'npm run test:coverage'
+
+Scenarios of errors look in the valid_args.test.js
+Scenarios of success look in the index.test.js
+
 CLI tool should accept 3 options (short alias and full name):
 
     -c, --config: config for ciphers Config is a string with pattern {XY(-)}n, where:

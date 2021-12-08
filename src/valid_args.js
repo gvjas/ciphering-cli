@@ -1,29 +1,33 @@
-import fs from 'fs'
-import path from 'path';
-import { fileURLToPath } from 'url';
+const fs = require('fs');
+const path = require('path');
+const { fileURLToPath } = require('url');
 
-import ConfigError from './ConfigError.js'
+const { ConfigError, FlagError, PathError } = require('./Custom_Error.js');
 
-const onceFlag = (flagArr, ...flagConfig) => {
+const isDuplicate = (flagArr, ...flagConfig) => {
     return flagArr.filter(x => flagConfig.includes(x)).length > 1
 }
 
+// const pathFile = (file) => {
+//     const __filename = fileURLToPath(import.meta.url);
+//     const __dirname = path.dirname(__filename);
+//     return path.resolve(__dirname.slice(0,-3), file)
+// }
+
 const pathFile = (file) => {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
     return path.resolve(__dirname.slice(0,-3), file)
 }
 
 const fileInOut = (flagArr, flagIO, flagInOut) => {
-    let ind = flagArr.indexOf(flagIO) === -1 ? flagArr.indexOf(flagInOut) : flagArr.indexOf(flagIO);
+    let ind = flagArr.includes(flagIO) ? flagArr.indexOf(flagIO) : flagArr.indexOf(flagInOut);
     let file;
     if (ind !== -1) {
         file = pathFile('' + flagArr[ind + 1])
         try {
-            fs.statSync(file);
-            return file
+            if (fs.statSync(file).isFile()) return file
+            else throw new PathError();
         } catch (e) {
-            throw new ConfigError(`File not found. After the flag  ${flagIO} or ${flagInOut}, you must specify the path to the existing file`);
+            throw new PathError(`File not found. After the flag  ${flagIO} or ${flagInOut}, you must specify the path to the existing file`);
         }
     }
 }
@@ -31,20 +35,24 @@ const fileInOut = (flagArr, flagIO, flagInOut) => {
 
 function validArgs(flag) {
 
-    const allowedFlags = ['C1', 'C0', 'R1', 'R0', 'A'];
+    const CIPHER_FLAGS = ['C1', 'C0', 'R1', 'R0', 'A'];
 
-    if (!flag || !(flag.includes('-c') || flag.includes('--config')) || onceFlag(flag, '-c', '--config')) {
-        throw new ConfigError('Try once again to start the file with one flag -c or --config.');
+    const indexConfig = flag.includes('-c') ? flag.indexOf('-c') : flag.indexOf('--config')
+    if (!flag || indexConfig === -1 || isDuplicate(flag, '-c', '--config')) {
+        throw new FlagError('Try once again to start the file with one flag -c or --config.');
     }
 
-    let indC = flag.indexOf('-c') === -1 ? flag.indexOf('--config') : flag.indexOf('-c');
-    let args = flag[indC + 1] ? flag[indC + 1].split('-') : 0;
-    if (!args || args.length != args.filter(x => allowedFlags.includes(x)).length) {
+    const args = flag[indexConfig + 1] ? flag[indexConfig + 1].split('-') : 0;
+    if (!args || args.length !== args.filter(x => CIPHER_FLAGS.includes(x)).length) {
         throw new ConfigError('Try to start once again with the transfer of parameters in сonfig. For example,"C1-C1-R0-A"');
     }
 
-    if (onceFlag(flag, '-i', '--input') || onceFlag(flag, '-o', '--output')) {
-        throw new ConfigError('Try once again to start the file with the optional flag -i or --input and/or -o or --output');
+    if (isDuplicate(flag, '-i', '--input')) {
+        throw new FlagError('Try once again to start the file with the optional flag -i or --input');
+    }
+
+    if (isDuplicate(flag, '-o', '--output')) {
+        throw new FlagError('Try once again to start the file with the optional flag -o or --output');
     }
 
     const fileIn = fileInOut(flag, '-i', '--input')
@@ -55,4 +63,4 @@ function validArgs(flag) {
 }
 
 
-export default validArgs;
+module.exports = { validArgs };

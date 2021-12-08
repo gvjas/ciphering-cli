@@ -1,18 +1,19 @@
-import fs from 'fs';
-import { pipeline } from 'stream';
+const fs = require('fs');
+const { pipeline } = require('stream');
+const path = require('path')
 
-import { ReadStream } from './ReadStream.js';
-import { WriteStream } from './WriteStream.js';
-import { TransformStreamC, TransformStreamROT, TransformStreamA } from './TransformStreamCRA.js'
+const { ReadStream } = require('./Read_Stream.js');
+const { WriteStream } = require('./Write_Stream.js');
+const { TransformStreamC, TransformStreamROT, TransformStreamA } = require('./Transform_Stream_CRA.js');
 
 
-function transformStream(chipherConfig, fileIn, fileOut) {
+function transformStream(cipherConfig, fileIn, fileOut) {
 
     const rstream = fileIn ? new ReadStream(fileIn) : process.stdin;
     const wstream = fileOut ? new WriteStream(fileOut) : process.stdout;
 
     let streams = [];
-    for (let el of chipherConfig) {
+    for (let el of cipherConfig) {
         if (el[0] === 'C') {
             streams.push(new TransformStreamC(el[1]))
         } else if (el[0] === 'R') {
@@ -22,7 +23,7 @@ function transformStream(chipherConfig, fileIn, fileOut) {
         }
     }
 
-  pipeline(
+    pipeline(
         rstream,
         ...streams,
         wstream,
@@ -33,4 +34,4 @@ function transformStream(chipherConfig, fileIn, fileOut) {
     )
 }
 
-export default transformStream;
+module.exports ={ transformStream };
